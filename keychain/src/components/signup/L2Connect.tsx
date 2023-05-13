@@ -109,6 +109,7 @@ export const L2Connect = ({
         ],
       },
     ]);
+
     disconnect();
     setTxn(transaction_hash);
     await onCreateFinalize(deviceKey, credentials);

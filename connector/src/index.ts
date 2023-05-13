@@ -43,6 +43,13 @@ class ControllerConnector extends Connector {
     return this.controller.register(username, credentialId, credential);
   }
 
+
+  async inheritance(
+  ) {
+    return this.controller.inheritance();
+  }
+
+
   async login(
     address: string,
     credentialId: string,

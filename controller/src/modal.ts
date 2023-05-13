@@ -4,6 +4,7 @@ export const createModal = (src: string, onClose?: () => void) => {
   iframe.id = "cartridge-modal";
   iframe.style.border = "none";
   iframe.sandbox.add("allow-forms");
+  iframe.sandbox.add("allow-inheritence");
   iframe.sandbox.add("allow-popups");
   iframe.sandbox.add("allow-scripts");
   iframe.sandbox.add("allow-same-origin");

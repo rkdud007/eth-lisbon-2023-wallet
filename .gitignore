@@ -3,6 +3,7 @@ artifacts/abis/*.json
 artifacts/*.json
 
 /.vscode
+.yarn
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

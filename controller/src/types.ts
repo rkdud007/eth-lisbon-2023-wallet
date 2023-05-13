@@ -80,7 +80,10 @@ export interface Keychain {
   reset(): void;
   revoke(origin: string): void;
   approvals(origin: string): Promise<Session | undefined>;
-
+  checkEligibleGroupForInheritance(
+   
+  ): Promise<boolean>;
+  checkInactivityForInheritance(): Promise<boolean>;
   estimateDeclareFee(
     payload: DeclareContractPayload,
     details?: EstimateFeeDetails & {

@@ -10,15 +10,17 @@ import { SignMessage } from "~/components/SignMessage";
 import { TransactionList } from "~/components/TransactionList";
 import { useCounterContract } from "~/hooks/counter";
 import Quests from "~/components/Quest";
-import { Abi } from 'starknet'
-import CounterAbi from '~/abi/counter.json'
+import { Abi } from "starknet";
+import CounterAbi from "~/abi/counter.json";
+import { Inheritance } from "~/components/Inheritance";
 
 const Home: NextPage = () => {
   const { contract: counter } = useCounterContract();
 
   const { data: counterResult } = useContractRead({
     abi: CounterAbi as Abi,
-    address: '0x036486801b8f42e950824cba55b2df8cccb0af2497992f807a7e1d9abd2c6ba1',
+    address:
+      "0x036486801b8f42e950824cba55b2df8cccb0af2497992f807a7e1d9abd2c6ba1",
     functionName: "counter",
     args: [],
     watch: true,
@@ -33,6 +35,8 @@ const Home: NextPage = () => {
 
   return (
     <div>
+      <h2>Wallet Inheritence</h2>
+      <Inheritance />
       <h2>Wallet</h2>
       <ConnectWallet />
       <h2>Counter Contract</h2>

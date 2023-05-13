@@ -42,8 +42,19 @@ import { normalize, validate } from "../methods";
 import DeploymentRequired from "components/DeploymentRequired";
 import Quests from "./quests";
 import Logout from "components/Logout";
+import {
+  checkEligibleGroupForInheritance,
+  checkInactivityForInheritance,
+} from "methods/inheritance";
 
-type Context = Connect | Logout | Execute | SignMessage | StarterPack | Quests;
+type Context =
+  | Connect
+  | Logout
+  | Execute
+  | SignMessage
+  | StarterPack
+  | Quests
+  | Inheritance;
 
 type Connect = {
   origin: string;
@@ -93,6 +104,14 @@ type StarterPack = {
 type Quests = {
   origin: string;
   type: "quests";
+  gameId: string;
+  resolve: () => void;
+  reject: () => void;
+};
+
+type Inheritance = {
+  origin: string;
+  type: "inheritance";
   gameId: string;
   resolve: () => void;
   reject: () => void;
@@ -262,6 +281,12 @@ const Index: NextPage = () => {
           ),
         ),
         revoke: normalize(revoke),
+        checkEligibleGroupForInheritance: normalize(
+          validate(checkEligibleGroupForInheritance),
+        ),
+        checkInactivityForInheritance: normalize(
+          validate(checkInactivityForInheritance),
+        ),
         signMessage: normalize(
           validate(
             (_: Controller, _session: Session, origin: string) =>
@@ -478,6 +503,11 @@ const Index: NextPage = () => {
         onLogout={() => onLogout(ctx)}
       />
     );
+  }
+
+  if (context.type === "inheritance") {
+    const ctx = context as Inheritance;
+    return <Inheritance />;
   }
 
   if (context.type === "sign-message") {

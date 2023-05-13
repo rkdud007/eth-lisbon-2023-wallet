@@ -111,6 +111,25 @@ class Controller {
       );
   }
 
+  async inheritance() {
+    if (!this.keychain || !this.modal) {
+      console.error("not ready for connect");
+      return;
+    }
+
+    this.modal.open();
+
+    try {
+      //  await this.keychain.checkEligibleGroupForInheritance();
+      //  await this.keychain.checkInactivityForInheritance();
+       return
+    } catch (e) {
+      console.error(e);
+    } finally {
+      this.modal.close();
+    }
+  }
+
   async probe() {
     if (!this.keychain || !this.modal) {
       console.error("not ready for connect");
